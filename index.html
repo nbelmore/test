@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Screen on Chromebook</title>
+</head>
+<body>
+<h1>Prepare to go Fullscreen!</h1>
+<script>
+  function goFullScreen() {
+    // Get the documentElement (<html>) to display the page in fullscreen
+    var elem = document.documentElement;
+
+    // API that enables full screen
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen().catch(err => {
+        // Handle errors that occur when trying to enter full screen mode
+        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+      });
+    } else {
+      console.log("Fullscreen API is not supported.");
+    }
+  }
+
+  // Set timeout to trigger full screen after 3 seconds
+  setTimeout(goFullScreen, 3000);
+</script>
+</body>
+</html>
