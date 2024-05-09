@@ -3,28 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Full Screen on Chromebook</title>
+<title>Disable Specific Keys</title>
 </head>
 <body>
-<h1>Prepare to go Fullscreen!</h1>
-<script>
-  function goFullScreen() {
-    // Get the documentElement (<html>) to display the page in fullscreen
-    var elem = document.documentElement;
+<label for="textInput">Enter text (a, s, d, f, g disabled):</label>
+<input type="text" id="textInput">
 
-    // API that enables full screen
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen().catch(err => {
-        // Handle errors that occur when trying to enter full screen mode
-        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-      });
-    } else {
-      console.log("Fullscreen API is not supported.");
+<script>
+  // Function to check if a key should be disabled
+  function disableKeys(event) {
+    // List of key codes to disable: a, s, d, f, g
+    const disabledKeys = ['KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG'];
+
+    // Check if the pressed key is in the list of disabled keys
+    if (disabledKeys.includes(event.code)) {
+      // Prevent the default action (character input) for these keys
+      event.preventDefault();
     }
   }
 
-  // Set timeout to trigger full screen after 3 seconds
-  setTimeout(goFullScreen, 3000);
+  // Get the text input element
+  const textInput = document.getElementById('textInput');
+
+  // Add an event listener to the text input to intercept keydown events
+  textInput.addEventListener('keydown', disableKeys);
 </script>
 </body>
 </html>
